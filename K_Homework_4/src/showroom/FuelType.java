@@ -1,5 +1,8 @@
 package showroom;
 
 public enum FuelType {
-
+    GASOLINE,
+    DIESEL,
+    ELECTRIC,
+    HYBRID
 }
