@@ -151,9 +151,17 @@ public class VehicleManager {
 	}
 
 	
-	private boolean isVehicleType(Vehicle v, Class clazz)
+	private boolean isVehicleType(Vehicle v, Class clazz) {
+		return clazz.isInstance(v);
+	}
 	
-	public int getNumberOfVehichlesByType(Class clazz)
+	public int getNumberOfVehichlesByType(Class clazz) {
+		int counter = 0;
+		for (Vehicle v : vehicleList) {
+			if (isVehicleType(v, clazz)) {
+				count++;
+			}
+		}
 
 	public double calculateMaintenanceCost(double distance)
 	{ 
