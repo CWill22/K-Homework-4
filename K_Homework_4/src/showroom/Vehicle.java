@@ -1,5 +1,10 @@
 package showroom;
 
-public class Vehicle {
+public abstract class Vehicle {
+  protected String brand;
+  protected String make;
+  protected long modelYear;
+  protected double price;
+  protected VehicleColor color;
 
 }
