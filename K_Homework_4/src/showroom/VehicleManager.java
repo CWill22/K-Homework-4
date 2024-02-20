@@ -172,4 +172,18 @@ public class VehicleManager {
 	public ArrayList<Vehicle> getVehicleWithLowestFuelEfficiency(double distance, double fuelPrice)
 	
 	public double getAverageFuelEfficiencyOfSUVs(double distance, double fuelPrice)
+	{
+		double eff = 0;
+		int count = 0;
+		for (Vehicle vehicle : vehicleList){
+			if (vehicle instanceof SUV){
+				eff += vehicle.calculateFuelEfficiency(distance, fuelPrice);
+				count++;
+			}
+		}
+		if (count == 0){
+			return -1.0; //Pops an error code if the SUV lsit is empty
+		}
+		return eff/count;
+	}
 }
