@@ -8,7 +8,7 @@ class SUV extends Vehicle {
     }
 
     @Override
-    public double calculateMaintenanceCost(double distance){
+	public double calculateMaintenaceCost(double distance) {
         return distance * mass * (2024 - modelYear) * cylinders * 0.0005;
     }
     
@@ -52,7 +52,7 @@ class SUV extends Vehicle {
     public int getCylinders() {
         return cylinders;
     }
-    public doulbe getMass() {
+    public double getMass() {
         return mass;
     }
     public double getGasTankCapacity() {
@@ -94,4 +94,5 @@ class SUV extends Vehicle {
     public void setStartType(StartMechanism startType) {
         this.startType = startType;
     }
+	
 }
