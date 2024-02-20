@@ -25,7 +25,7 @@ public abstract class Vehicle {
     this.make = make;
     this.modelYear = modelYear;
     this.price = price;
-    this.color = color
+    this.color = color;
     this.fuelType = fuelType;
     this.mileage = mileage;
     this.mass = mass;
@@ -40,7 +40,7 @@ public abstract class Vehicle {
     this.make = vehicle.make;
     this.modelYear = vehicle.modelYear;
     this.price = vehicle.price;
-    this.color = vehicle.color
+    this.color = vehicle.color;
     this.fuelType = vehicle.fuelType;
     this.mileage = vehicle.mileage;
     this.mass = vehicle.mass;
