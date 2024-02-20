@@ -9,18 +9,24 @@ class Truck extends Vehicle {
 
     @Override
     public double calculateMaintenanceCost(double distance){
-        return distance * mass * (2024 - modelYear) * cylinders * 0.002;
+        return distance * mass * (2024 - modelYear) * cylinders * 0.001;
     }
     
     @Override
     public double calculateFuelEfficiency(double distance, double fuelPrice){
-        return cylinders * gasTankCapacity * fuelPrice / distance * 0.1;
+        return cylinders * gasTankCapacity * fuelPrice / distance * 0.05;
     }
 
     @Override
     public void startEngine(){
-        System.out.println("Starting the truck engine");
+        if (this.getStartType() == StartMechanism.KEYSTART){
+            System.out.println("Starting the Car Engine with " + this.startType);
+        }
+        else {
+            System.out.println("Car did not start");
+        }
     }
+    
     //Getters and Setters
     public String getBrand() {
         return brand;
@@ -46,7 +52,7 @@ class Truck extends Vehicle {
     public int getCylinders() {
         return cylinders;
     }
-    public doulbe getMass() {
+    public double getMass() {
         return mass;
     }
     public double getGasTankCapacity() {
