@@ -216,8 +216,42 @@ public class VehicleManager {
 	        }
 	}
 	public ArrayList<Vehicle> getVehicleWithHighestFuelEfficiency(double distance, double fuelPrice)
+	{
+		if (vehicleList.isEmpty())
+	            return null;
+	        ArrayList<Vehicle> maxEfficiencyVehicles = new ArrayList<>();
+	        double maxFuelEff = Double.MIN_VALUE;
+	        for (Vehicle vehicle : vehicleList) {
+	            double efficiency = vehicle.calculateFuelEfficiency(distance, fuelPrice);
+	            if (eff > maxFuelEff) {
+	                maxFuelEff = eff;
+	                maxEfficiencyVehicles.clear();
+	                maxEfficiencyVehicles.add(vehicle);
+	            } else if (eff == maxFuelEff) {
+	                maxEfficiencyVehicles.add(vehicle);
+	            }
+	        }
+	        return maxEfficiencyVehicles;
+	}
 
 	public ArrayList<Vehicle> getVehicleWithLowestFuelEfficiency(double distance, double fuelPrice)
+	{
+		if (vehicleList.isEmpty())
+	            return null;
+	        ArrayList<Vehicle> minEfficiencyVehicles = new ArrayList<>();
+	        double minFuelEff = Double.MAX_VALUE;
+	        for (Vehicle vehicle : vehicleList) {
+	            double eff = vehicle.calculateFuelEfficiency(distance, fuelPrice);
+	            if (eff < minFuelEff) {
+	                minFuelEff = eff;
+	                minEfficiencyVehicles.clear();
+	                minEfficiencyVehicles.add(vehicle);
+	            } else if (eff == minFuelEff) {
+	                minEfficiencyVehicles.add(vehicle);
+	            }
+	        }
+	        return minEfficiencyVehicles;
+	}
 	
 	public double getAverageFuelEfficiencyOfSUVs(double distance, double fuelPrice)
 	{
