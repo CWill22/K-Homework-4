@@ -1,6 +1,5 @@
 package showroom;
 import java.util.Scanner;
-
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -11,15 +10,16 @@ import java.io.FileWriter;
 
 public class VehicleManager {
 	
-	private final String vehicleFilePath = "./files/vehicleList.csv";
+	private final static String vehicleFilePath = "./files/vehicleList.csv";
 
 	public ArrayList<Vehicle> vehicleList;
-	
+	/*
 	public VehicleManager() {
 		this.vehicleList = new ArrayList<Vehicle>();
 	}
+	*/
 	
-	public boolean readFromFile(String fileName) {
+	public boolean initializeStock(String fileName) {
 		
 	try {
         Scanner fileIn = new Scanner(new FileInputStream(vehicleFilePath));
@@ -37,9 +37,9 @@ public class VehicleManager {
             String[] splitLine = line.split(",");
             // Convert the strings to the appropriate data types
             String type = splitLine[0];
-            String make = splitLine[1];
+            String brand = splitLine[1];
             String model = splitLine[2];
-            int modelYear = Integer.parseInt(splitLine[3]);
+            long modelYear = Integer.parseInt(splitLine[3]);
             String color = splitLine[4];
             String fuelType = splitLine[5];
             int mileage = Integer.parseInt(splitLine[6]);
@@ -49,19 +49,19 @@ public class VehicleManager {
             String startType = splitLine[10];
             // Create a new object of the appropriate type
             if(type.equals("Car")) {
-                Car car = new Car(make, model, modelYear, color, fuelType, mileage, mass, cylinders, gasTankCapacity, startType);
+                Car car = new Car(brand, model, modelYear, color, fuelType, mileage, mass, cylinders, gasTankCapacity, startType);
                 vehicleList.add(car);
             }
             else if(type.equals("Truck")) {
-                Truck truck = new Truck(make, model, modelYear, color, fuelType, mileage, mass, cylinders, gasTankCapacity, startType);
+                Truck truck = new Truck(brand, model, modelYear, color, fuelType, mileage, mass, cylinders, gasTankCapacity, startType);
                 vehicleList.add(truck);
             }
             else if(type.equals("SUV")) {
-                SUV suv = new SUV(make, model, modelYear, color, fuelType, mileage, mass, cylinders, gasTankCapacity, startType);
+                SUV suv = new SUV(brand, model, modelYear, color, fuelType, mileage, mass, cylinders, gasTankCapacity, startType);
                 vehicleList.add(suv);
             }
             else if(type.equals("MotorBike")) {
-                MotorBike motorBike = new MotorBike(make, model, modelYear, color, fuelType, mileage, mass, cylinders, gasTankCapacity, startType);
+                MotorBike motorBike = new MotorBike(brand, model, modelYear, color, fuelType, mileage, mass, cylinders, gasTankCapacity, startType);
                 vehicleList.add(motorBike);
             }
             
@@ -76,14 +76,25 @@ public class VehicleManager {
         
 	}
 	
-	public void VehicleManager(String fileName)
-	{
-		vehicleList = new ArrayList<Vehicle>();
-        readFromFile(fileName);
-    
-	}
+	
 	
 	public void displayAllCarInformation() 
+	{
+		Car car1;
+		
+		for (Vehicle v : vehicleList) {
+			try {
+				System.out.println("In Car try block");
+			    car1 = (Car) v;
+                displayVehicleInformation(v);
+            }
+            catch(Exception e) {
+                
+            }
+		}
+		
+		
+	}
 	
 	public void displayAllTruckInformation()
 	
@@ -92,8 +103,18 @@ public class VehicleManager {
 	public void displayAllMotorBikeInformation()
 	
 	public void displayVehicleInformation(Vehicle v)
+	{
+		System.out.println(v);
+	}
 	
 	public void displayAllVehicleInformation() 
+	{
+		for (Vehicle v : vehicleList) {
+			displayVehicleInformation(v);
+		}
+	}
+		
+	}
 	
 	public boolean removeVehicle(Vehicle vehicle)
 	{
@@ -118,7 +139,7 @@ public class VehicleManager {
 	{
 		        try {
             BufferedWriter writer = new BufferedWriter(new FileWriter(vehicleFilePath));
-            writer.write("Type,Make,Model,ModelYear,Color,FuelType,Mileage,Mass,Cylinders,GasTankCapacity,StartType\n");
+            writer.write("Type,Brand,Make,ModelYear,Price,Color,FuelType,Mileage,Mass,Cylinders,GasTankCapacity,StartType\n");
             for (Vehicle vehicle : vehicleList) {
                 writer.write(vehicle.toString());
             }	
