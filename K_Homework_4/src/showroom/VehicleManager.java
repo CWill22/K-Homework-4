@@ -40,28 +40,29 @@ public class VehicleManager {
             String brand = splitLine[1];
             String model = splitLine[2];
             long modelYear = Integer.parseInt(splitLine[3]);
-            String color = splitLine[4];
-            String fuelType = splitLine[5];
-            int mileage = Integer.parseInt(splitLine[6]);
-            double mass = Double.parseDouble(splitLine[7]);
-            int cylinders = Integer.parseInt(splitLine[8]);
-            int gasTankCapacity = Integer.parseInt(splitLine[9]);
-            String startType = splitLine[10];
+            double price = Double.parseDouble(splitLine[4]);
+            VehicleColor color = VehicleColor.valueOf(splitLine[5]);
+            FuelType fuelType = FuelType.valueOf(splitLine[6]);
+            double mileage = Integer.parseInt(splitLine[7]);
+            double mass = Double.parseDouble(splitLine[8]);
+            int cylinders = Integer.parseInt(splitLine[9]);
+            double gasTankCapacity = Double.parseDouble(splitLine[10]);
+            StartMechanism startType = StartMechanism.valueOf(splitLine[11]);
             // Create a new object of the appropriate type
             if(type.equals("Car")) {
-                Car car = new Car(brand, model, modelYear, color, fuelType, mileage, mass, cylinders, gasTankCapacity, startType);
+            	Car car = new Car(brand, model, modelYear, price, color, fuelType, mileage, mass, cylinders, gasTankCapacity, startType);
                 vehicleList.add(car);
             }
             else if(type.equals("Truck")) {
-                Truck truck = new Truck(brand, model, modelYear, color, fuelType, mileage, mass, cylinders, gasTankCapacity, startType);
+            	Truck truck = new Truck(brand, model, modelYear, price, color, fuelType, mileage, mass, cylinders, gasTankCapacity, startType);
                 vehicleList.add(truck);
             }
             else if(type.equals("SUV")) {
-                SUV suv = new SUV(brand, model, modelYear, color, fuelType, mileage, mass, cylinders, gasTankCapacity, startType);
+            	SUV suv = new SUV(brand, model, modelYear, price, color, fuelType, mileage, mass, cylinders, gasTankCapacity, startType);
                 vehicleList.add(suv);
             }
             else if(type.equals("MotorBike")) {
-                MotorBike motorBike = new MotorBike(brand, model, modelYear, color, fuelType, mileage, mass, cylinders, gasTankCapacity, startType);
+            	MotorBike motorBike = new MotorBike(brand, model, modelYear, price, color, fuelType, mileage, mass, cylinders, gasTankCapacity, startType);
                 vehicleList.add(motorBike);
             }
             
@@ -97,10 +98,49 @@ public class VehicleManager {
 	}
 	
 	public void displayAllTruckInformation()
+	{
+		Truck truck1;
+
+		for (Vehicle v : vehicleList) {
+			try {
+				System.out.println("In Truck try block");
+				truck1 = (Truck) v;
+				displayVehicleInformation(v);
+			} catch (Exception e) {
+
+			}
+		}
+	}
 	
 	public void displayAllSUVInformation()
+	{
+		SUV suv1;
+
+		for (Vehicle v : vehicleList) {
+			try {
+				System.out.println("In SUV try block");
+				suv1 = (SUV) v;
+				displayVehicleInformation(v);
+			} catch (Exception e) {
+
+			}
+		}
+	}
 	
 	public void displayAllMotorBikeInformation()
+	{
+		MotorBike motorBike1;
+
+		for (Vehicle v : vehicleList) {
+			try {
+				System.out.println("In MotorBike try block");
+				motorBike1 = (MotorBike) v;
+				displayVehicleInformation(v);
+			} catch (Exception e) {
+
+			}
+		}
+	}
 	
 	public void displayVehicleInformation(Vehicle v)
 	{
@@ -114,7 +154,7 @@ public class VehicleManager {
 		}
 	}
 		
-	}
+	
 	
 	public boolean removeVehicle(Vehicle vehicle)
 	{
@@ -162,17 +202,19 @@ public class VehicleManager {
 				counter++;
 			}
 		}
-
-	public Vehicle getVehicleWithHighestMaintenanceCost(double distance) {
-		 if (vehicleList.isEmpty()) {
-            return null; // No vehicles available
-        }
 	
+	public Vehicle getVehicleWithHighestMaintenanceCost(double distance) {
+			 if (vehicleList.isEmpty()) {
+	            return null; // No vehicles available
+	        }
+			 
+	}
+		
 	public Vehicle getVehicleWithLowestMaintenanceCost(double distance) {
-		if (vehicleList.isEmpty()) {
-            return null; // No vehicles available
-        }
-
+			if (vehicleList.isEmpty()) {
+	            return null; // No vehicles available
+	        }
+	}
 	public ArrayList<Vehicle> getVehicleWithHighestFuelEfficiency(double distance, double fuelPrice)
 
 	public ArrayList<Vehicle> getVehicleWithLowestFuelEfficiency(double distance, double fuelPrice)
