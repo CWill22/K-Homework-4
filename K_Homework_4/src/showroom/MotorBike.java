@@ -20,7 +20,7 @@ class MotorBike extends Vehicle {
    @Override
     public void startEngine(){
         if (this.getStartType() == StartMechanism.KICKSTART){
-            System.out.println("Starting the Car Engine with " + this.getStartType());
+            System.out.println("Starting the Car Engine with " + this.startType);
         }
         else {
             System.out.println("Car did not start");
