@@ -1,10 +1,10 @@
 package showroom;
 class Car extends Vehicle {
-    public Car(String brand, String make, long modelYear, double price, VehicleColor color, FuelType fuelType, double mileage, int cylinders, double gasTankCapacity) {
-        super(brand, make, modelYear, price, color, fuelType, mileage, cylinders, gasTankCapacity);
+    public Car(String brand, String make, long modelYear, double price, VehicleColor color, FuelType fuelType, double mileage, double mass, int cylinders, double gasTankCapacity, StartMechanism startType) {
+        super(brand, make, modelYear, price, color, fuelType, mileage, cylinders, cylinders, gasTankCapacity, startType);
     }
     public Car(Car Vehicle){
-        super(Vehicle.brand, Vehicle.make, Vehicle.modelYear, Vehicle.price, Vehicle.color, Vehicle.fuelType, Vehicle.mileage, Vehicle.cylinders, Vehicle.gasTankCapacity);
+        super(Vehicle.brand, Vehicle.make, Vehicle.modelYear, Vehicle.price, Vehicle.color, Vehicle.fuelType, Vehicle.mileage, Vehicle.mass ,Vehicle.cylinders, Vehicle.gasTankCapacity, Vehicle.startType);
     }
 
     @Override
