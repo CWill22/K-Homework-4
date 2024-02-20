@@ -1,26 +1,26 @@
 package showroom;
 class MotorBike extends Vehicle {
-    public MotorBike(String brand, String make, long modelYear, double price, VehicleColor color, FuelType fuelType, double mileage, int cylinders, double gasTankCapacity) {
-        super(brand, make, modelYear, price, color, fuelType, mileage, cylinders, gasTankCapacity);
+    public MotorBike(String brand, String make, long modelYear, double price, VehicleColor color, FuelType fuelType, double mileage, double mass, int cylinders, double gasTankCapacity, StartMechanism startType) {
+        super(brand, make, modelYear, price, color, fuelType, mileage, cylinders, cylinders, gasTankCapacity, startType);
     }
     public MotorBike(MotorBike Vehicle){
-        super(Vehicle.brand, Vehicle.make, Vehicle.modelYear, Vehicle.price, Vehicle.color, Vehicle.fuelType, Vehicle.mileage, Vehicle.cylinders, Vehicle.gasTankCapacity);
+        super(Vehicle.brand, Vehicle.make, Vehicle.modelYear, Vehicle.price, Vehicle.color, Vehicle.fuelType, Vehicle.mileage, Vehicle.mass ,Vehicle.cylinders, Vehicle.gasTankCapacity, Vehicle.startType);
     }
 
     @Override
     public double calculateMaintenanceCost(double distance){
-        return distance * mass * (2024 - modelYear) * cylinders * 0.0002;
+        return distance * mass * (2024 - modelYear) * cylinders * 0.0005;
     }
     
     @Override
     public double calculateFuelEfficiency(double distance, double fuelPrice){
-        return cylinders * gasTankCapacity * fuelPrice / distance * 0.001;
+        return cylinders * gasTankCapacity * fuelPrice / distance * 0.003;
     }
 
-   @Override
+    @Override
     public void startEngine(){
-        if (this.getStartType() == StartMechanism.KICKSTART){
-            System.out.println("Starting the Car Engine with " + this.startType);
+        if (startType == StartMechanism.PUSHSTART){
+            System.out.println("Starting the Car Engine with " + startType);
         }
         else {
             System.out.println("Car did not start");
