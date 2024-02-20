@@ -17,10 +17,10 @@ class MotorBike extends Vehicle {
         return cylinders * gasTankCapacity * fuelPrice / distance * 0.001;
     }
 
-    @Override
+   @Override
     public void startEngine(){
-        if (startType == StartMechanism.KICKSTART){
-            System.out.println("Starting the Car Engine with " + startType);
+        if (this.getStartType() == StartMechanism.KICKSTART){
+            System.out.println("Starting the Car Engine with " + this.getStartType());
         }
         else {
             System.out.println("Car did not start");
