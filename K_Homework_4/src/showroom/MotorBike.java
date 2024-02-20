@@ -3,12 +3,12 @@ class MotorBike extends Vehicle {
     public MotorBike(String brand, String make, long modelYear, double price, VehicleColor color, FuelType fuelType, double mileage, double mass, int cylinders, double gasTankCapacity, StartMechanism startType) {
         super(brand, make, modelYear, price, color, fuelType, mileage, cylinders, cylinders, gasTankCapacity, startType);
     }
-    public MotorBike(MotorBike Vehicle){
+    public MotorBike(Motorbike Vehicle){
         super(Vehicle.brand, Vehicle.make, Vehicle.modelYear, Vehicle.price, Vehicle.color, Vehicle.fuelType, Vehicle.mileage, Vehicle.mass ,Vehicle.cylinders, Vehicle.gasTankCapacity, Vehicle.startType);
     }
 
     @Override
-    public double calculateMaintenanceCost(double distance){
+	public double calculateMaintenaceCost(double distance) {
         return distance * mass * (2024 - modelYear) * cylinders * 0.0005;
     }
     
@@ -52,7 +52,7 @@ class MotorBike extends Vehicle {
     public int getCylinders() {
         return cylinders;
     }
-    public doulbe getMass() {
+    public double getMass() {
         return mass;
     }
     public double getGasTankCapacity() {
@@ -94,4 +94,8 @@ class MotorBike extends Vehicle {
     public void setStartType(StartMechanism startType) {
         this.startType = startType;
     }
+	
+	
+	
+	
 }
