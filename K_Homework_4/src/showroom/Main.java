@@ -2,7 +2,7 @@ package showroom;
 
 public class Main {
 	public static void main(String[] args) {
-		ehicleManager vehicleManager = new VehicleManager();
+		VehicleManager vehicleManager = new VehicleManager();
 		
 		boolean readSuccess = vehicleManager.initializeStock();
 	        if (readSuccess) {
