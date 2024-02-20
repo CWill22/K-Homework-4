@@ -4,7 +4,7 @@ public class Main {
 	public static void main(String[] args) {
 		VehicleManager vehicleManager = new VehicleManager("vehicleList.csv");
 
-		boolean readSuccess = vehicleManager.readFromFile();
+		boolean readSuccess = vehicleManager.initializeStock();
 	        if (readSuccess) {
 	            System.out.println("Vehicle data read successfully from file.");
 	        } else {
