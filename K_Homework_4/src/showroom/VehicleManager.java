@@ -159,7 +159,7 @@ public class VehicleManager {
 		int counter = 0;
 		for (Vehicle v : vehicleList) {
 			if (isVehicleType(v, clazz)) {
-				count++;
+				counter++;
 			}
 		}
 
