@@ -49,8 +49,16 @@ public abstract class Vehicle {
     this.startType = vehicle.startType;
   }
     
-  public string toString() {
-	  
-  }
-
+  public String toString() {
+    return "Brand: " + brand +
+            ", Make: " + make +
+            ", Model Year: " + modelYear +
+            ", Price: $" + price +
+            ", Color: " + color +
+            ", Fuel Type: " + fuelType +
+            ", Mileage: " + mileage +
+            " miles, Mass: " + mass +
+            " kg, Cylinders: " + cylinders +
+            ", Gas Tank Capacity: " + gasTankCapacity +
+            " gallons, Start Type: " + startType;
 }
