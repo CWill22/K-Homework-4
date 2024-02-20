@@ -20,7 +20,7 @@ public abstract class Vehicle {
   public abstract void startEngine();
 
   // Parameterized Constructor
-  public Vehicle(String brand, String make, long modelYear, double price, VehicleColor color, Fueltype fuelType, double mileage, double mass, int cylinders, double gasTankCapacity, StartMechanism startType) {
+  public Vehicle(String brand, String make, long modelYear, double price, VehicleColor color, FuelType fuelType, double mileage, double mass, int cylinders, double gasTankCapacity, StartMechanism startType) {
     this.brand = brand;
     this.make = make;
     this.modelYear = modelYear;
@@ -29,7 +29,7 @@ public abstract class Vehicle {
     this.fuelType = fuelType;
     this.mileage = mileage;
     this.mass = mass;
-    this. cylinders = cylinders;
+    this.cylinders = cylinders;
     this.gasTankCapacity = gasTankCapacity;
     this.startType = startType;
   }
@@ -44,12 +44,13 @@ public abstract class Vehicle {
     this.fuelType = vehicle.fuelType;
     this.mileage = vehicle.mileage;
     this.mass = vehicle.mass;
-    this. cylinders = vehicle.cylinders;
+    this.cylinders = vehicle.cylinders;
     this.gasTankCapacity = vehicle.gasTankCapacity;
     this.startType = vehicle.startType;
   }
     
   public string toString() {
+	  
   }
 
 }
