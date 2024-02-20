@@ -1,23 +1,27 @@
 package showroom;
 
 public class Main {
-
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		
-			// Instantiate vehicleManager, perform operations based on the requirements.
-			VehicleManager vehicleManager = new VehicleManager();
-			// Read vehicle data from the vehcileList.csv file and initialize objects.
-			// TODO
-			// Display all vehicle information.
-			// TODO
-			// Display all car information.
-			// TODO
-			// Display all motorbike information.
-			// TODO
-			}
-			
+		VehicleManager vehicleManager = new VehicleManager("vehicleList.csv");
 
+		boolean readSuccess = vehicleManager.readFromFile();
+	        if (readSuccess) {
+	            System.out.println("Vehicle data read successfully from file.");
+	        } else {
+	            System.out.println("Failed to read vehicle data from file.");
+	        }
+	        System.out.println("All Vehicle Information:");
+	        vehicleManager.displayAllVehicleInformation();
+		//Displays everything about all vehicles
+
+	        System.out.println("\nAll Car Information:");
+	        vehicleManager.displayAllCarInformation();
+		//Displays all information for Cars
+
+	        System.out.println("\nAll Motorbike Information:");
+	        vehicleManager.displayAllMotorBikeInformation(); 
+		//Displays everything about the Motorbikes
+		
 	}
 
 }
