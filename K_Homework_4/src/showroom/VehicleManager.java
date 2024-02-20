@@ -154,10 +154,20 @@ public class VehicleManager {
 	private boolean isVehicleType(Vehicle v, Class clazz)
 	
 	public int getNumberOfVehichlesByType(Class clazz)
+
+	public double calculateMaintenanceCost(double distance)
+	{ 
+		return distance * mass * (2024 - modelYear) * cylinders * 0.002;
+	}
 	
 	public Vehicle getVehicleWithHighestMaintenanceCost(double distance)
 	
 	public Vehicle getVehicleWithLowestMaintenanceCost(double distance)
+
+	public double calculateFuelEfficiency(double distance, double fuelPrice)
+	{
+		return cylinders * gasTankCapacity * fuelPrice / (distance * 0.1);
+	}
 	
 	public ArrayList<Vehicle> getVehicleWithHighestFuelEfficiency(double distance, double fuelPrice)
 
