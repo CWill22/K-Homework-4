@@ -163,9 +163,15 @@ public class VehicleManager {
 			}
 		}
 
-	public Vehicle getVehicleWithHighestMaintenanceCost(double distance)
+	public Vehicle getVehicleWithHighestMaintenanceCost(double distance) {
+		 if (vehicleList.isEmpty()) {
+            return null; // No vehicles available
+        }
 	
-	public Vehicle getVehicleWithLowestMaintenanceCost(double distance)
+	public Vehicle getVehicleWithLowestMaintenanceCost(double distance) {
+		if (vehicleList.isEmpty()) {
+            return null; // No vehicles available
+        }
 
 	public ArrayList<Vehicle> getVehicleWithHighestFuelEfficiency(double distance, double fuelPrice)
 
