@@ -13,13 +13,17 @@ public class VehicleManager {
 	private final static String vehicleFilePath = "./files/vehicleList.csv";
 
 	public ArrayList<Vehicle> vehicleList;
+
+	public VehicleManager() {
+		this.vehicleList = new ArrayList<Vehicle>();
+	}
 	/*
 	public VehicleManager() {
 		this.vehicleList = new ArrayList<Vehicle>();
 	}
 	*/
 	
-	public boolean initializeStock(String fileName) {
+	public boolean initializeStock() {
 		
 	try {
         Scanner fileIn = new Scanner(new FileInputStream(vehicleFilePath));
@@ -85,7 +89,7 @@ public class VehicleManager {
 		
 		for (Vehicle v : vehicleList) {
 			try {
-				System.out.println("In Car try block");
+				//System.out.println("In Car try block");
 			    car1 = (Car) v;
                 displayVehicleInformation(v);
             }
@@ -103,7 +107,7 @@ public class VehicleManager {
 
 		for (Vehicle v : vehicleList) {
 			try {
-				System.out.println("In Truck try block");
+				//System.out.println("In Truck try block");
 				truck1 = (Truck) v;
 				displayVehicleInformation(v);
 			} catch (Exception e) {
@@ -118,7 +122,7 @@ public class VehicleManager {
 
 		for (Vehicle v : vehicleList) {
 			try {
-				System.out.println("In SUV try block");
+				//System.out.println("In SUV try block");
 				suv1 = (SUV) v;
 				displayVehicleInformation(v);
 			} catch (Exception e) {
@@ -133,7 +137,7 @@ public class VehicleManager {
 
 		for (Vehicle v : vehicleList) {
 			try {
-				System.out.println("In MotorBike try block");
+				//System.out.println("In MotorBike try block");
 				motorBike1 = (MotorBike) v;
 				displayVehicleInformation(v);
 			} catch (Exception e) {
@@ -202,11 +206,25 @@ public class VehicleManager {
 				counter++;
 			}
 		}
+		return counter;
+	}
 	
 	public Vehicle getVehicleWithHighestMaintenanceCost(double distance) {
 			 if (vehicleList.isEmpty()) {
 	            return null; // No vehicles available
 	        }
+			else {
+				Vehicle maxMaintCostVehicle = vehicleList.get(0);
+				double maxMaintCost = vehicleList.get(0).calculateMaintenaceCost(distance);
+				for (Vehicle vehicle : vehicleList) {
+					double maintCost = vehicle.calculateMaintenaceCost(distance);
+					if (maintCost > maxMaintCost) {
+						maxMaintCost = maintCost;
+						maxMaintCostVehicle = vehicle;
+					}
+				}
+				return maxMaintCostVehicle;
+			}
 			 
 	}
 		
@@ -214,6 +232,18 @@ public class VehicleManager {
 			if (vehicleList.isEmpty()) {
 	            return null; // No vehicles available
 	        }
+			else {
+				Vehicle minMaintCostVehicle = vehicleList.get(0);
+				double minMaintCost = vehicleList.get(0).calculateMaintenaceCost(distance);
+				for (Vehicle vehicle : vehicleList) {
+					double maintCost = vehicle.calculateMaintenaceCost(distance);
+					if (maintCost < minMaintCost) {
+						minMaintCost = maintCost;
+						minMaintCostVehicle = vehicle;
+					}
+				}
+				return minMaintCostVehicle;
+			}
 	}
 	public ArrayList<Vehicle> getVehicleWithHighestFuelEfficiency(double distance, double fuelPrice)
 	{
@@ -222,7 +252,7 @@ public class VehicleManager {
 	        ArrayList<Vehicle> maxEfficiencyVehicles = new ArrayList<>();
 	        double maxFuelEff = Double.MIN_VALUE;
 	        for (Vehicle vehicle : vehicleList) {
-	            double efficiency = vehicle.calculateFuelEfficiency(distance, fuelPrice);
+	            double eff = vehicle.calculateFuelEfficiency(distance, fuelPrice);
 	            if (eff > maxFuelEff) {
 	                maxFuelEff = eff;
 	                maxEfficiencyVehicles.clear();
