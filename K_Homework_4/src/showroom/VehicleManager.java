@@ -15,6 +15,10 @@ public class VehicleManager {
 	private final static String vehicleFilePath = "./files/vehicleList.csv";
 
 	public ArrayList<Vehicle> vehicleList;
+	
+	private final static double distance = 300;
+
+	private final static double fuelPrice = 3.25;
 
 	public VehicleManager() {
 		this.vehicleList = new ArrayList<Vehicle>();
@@ -150,7 +154,7 @@ public class VehicleManager {
 	
 	public void displayVehicleInformation(Vehicle v)
 	{
-		System.out.println(v);
+		System.out.println(v + " Maintenance Cost: " + v.calculateMaintenaceCost(distance) + " Fuel Efficiency: " + v.calculateFuelEfficiency(distance, fuelPrice));
 	}
 	
 	public void displayAllVehicleInformation() 
@@ -182,7 +186,7 @@ public class VehicleManager {
 	}
 	
 	public boolean saveVehicleList() 
-	{
+	{	
 		BufferedWriter writer = null;
 		try  {
 			writer = new BufferedWriter(new FileWriter(vehicleFilePath));
