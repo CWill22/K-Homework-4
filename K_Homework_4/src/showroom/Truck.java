@@ -14,7 +14,7 @@ class Truck extends Vehicle {
     
     @Override
     public double calculateFuelEfficiency(double distance, double fuelPrice){
-        return cylinders * gasTankCapacity * fuelPrice / distance * 0.003;
+        return cylinders * gasTankCapacity * fuelPrice / distance * 0.1;
     }
 
     @Override
