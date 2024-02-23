@@ -1,10 +1,12 @@
 package showroom;
 import java.util.Scanner;
+
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
+import java.io.IOException;
 
 
 
@@ -47,7 +49,7 @@ public class VehicleManager {
             double price = Double.parseDouble(splitLine[4]);
             VehicleColor color = VehicleColor.valueOf(splitLine[5]);
             FuelType fuelType = FuelType.valueOf(splitLine[6]);
-            double mileage = Integer.parseInt(splitLine[7]);
+            double mileage = Double.parseDouble(splitLine[7]);
             double mass = Double.parseDouble(splitLine[8]);
             int cylinders = Integer.parseInt(splitLine[9]);
             double gasTankCapacity = Double.parseDouble(splitLine[10]);
@@ -181,17 +183,30 @@ public class VehicleManager {
 	
 	public boolean saveVehicleList() 
 	{
-		        try {
-            BufferedWriter writer = new BufferedWriter(new FileWriter(vehicleFilePath));
-            writer.write("Type,Brand,Make,ModelYear,Price,Color,FuelType,Mileage,Mass,Cylinders,GasTankCapacity,StartType\n");
-            for (Vehicle vehicle : vehicleList) {
-                writer.write(vehicle.toString());
-            }	
-            writer.close();
-            return true;
-            } catch (Exception e) {
-            	return false;
-            }
+		BufferedWriter writer = null;
+		try  {
+			writer = new BufferedWriter(new FileWriter(vehicleFilePath));
+			writer.write("Type,Brand,Make,ModelYear,Price,Color,FuelType,Mileage,Mass,Cylinders,GasTankCapacity,StartType\n");
+			//ArrayList<Vehicle> vehicles = getVehicleList();
+			if(vehicleList.isEmpty())
+			{
+				System.out.println("File is Empty");
+			}
+			for (Vehicle vehicle : vehicleList) {
+				System.out.println("In Vehicle write loop");
+				writer.write(String.format("%s,%s,%s,%d,%f,%s,%s,%f,%f,%d,%f,%s\n",vehicle.getClass().getSimpleName(), vehicle.brand, vehicle.make,vehicle.modelYear, vehicle.price, vehicle.color.toString(), vehicle.fuelType.toString()
+						, vehicle.mileage, vehicle.mass, vehicle.cylinders, vehicle.gasTankCapacity, vehicle.startType.toString()));
+			}
+			
+			writer.close();	
+			return true;
+		} catch (IOException e) {
+			e.printStackTrace();
+			return false;
+		}
+		        
+		  
+		        
 	}
 
 	
