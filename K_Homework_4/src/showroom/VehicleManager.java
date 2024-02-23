@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Random;
+
 
 
 
@@ -229,41 +231,47 @@ public class VehicleManager {
 	}
 	
 	public Vehicle getVehicleWithHighestMaintenanceCost(double distance) {
-			 if (vehicleList.isEmpty()) {
-	            return null; // No vehicles available
-	        }
-			else {
-				Vehicle maxMaintCostVehicle = vehicleList.get(0);
-				double maxMaintCost = vehicleList.get(0).calculateMaintenaceCost(distance);
-				for (Vehicle vehicle : vehicleList) {
-					double maintCost = vehicle.calculateMaintenaceCost(distance);
-					if (maintCost > maxMaintCost) {
-						maxMaintCost = maintCost;
-						maxMaintCostVehicle = vehicle;
-					}
-				}
-				return maxMaintCostVehicle;
+		if (vehicleList.isEmpty())
+            return null;
+        ArrayList<Vehicle> maxMCostVehicles = new ArrayList<>();
+        double maxMCost = Double.MIN_VALUE;
+        for (Vehicle vehicle : vehicleList) {
+            double mCost = vehicle.calculateMaintenaceCost(distance);
+			if (mCost > maxMCost) {
+				maxMCost = mCost;
+				maxMCostVehicles.clear();
+				maxMCostVehicles.add(vehicle);
+			} else if (mCost == maxMCost) {
+				maxMCostVehicles.add(vehicle);
 			}
+        }
+        //randomly return one of the vehicles from the list, if multiple vehicles have the same highest maintenance cost
+        Random randindex = new Random();
+        return maxMCostVehicles.get(randindex.nextInt(maxMCostVehicles.size()));
+        
 			 
 	}
 		
 	public Vehicle getVehicleWithLowestMaintenanceCost(double distance) {
-			if (vehicleList.isEmpty()) {
-	            return null; // No vehicles available
-	        }
-			else {
-				Vehicle minMaintCostVehicle = vehicleList.get(0);
-				double minMaintCost = vehicleList.get(0).calculateMaintenaceCost(distance);
-				for (Vehicle vehicle : vehicleList) {
-					double maintCost = vehicle.calculateMaintenaceCost(distance);
-					if (maintCost < minMaintCost) {
-						minMaintCost = maintCost;
-						minMaintCostVehicle = vehicle;
-					}
-				}
-				return minMaintCostVehicle;
+		if (vehicleList.isEmpty())
+			return null;
+		ArrayList<Vehicle> minMCostVehicles = new ArrayList<>();
+		double minMCost = Double.MAX_VALUE;
+		for (Vehicle vehicle : vehicleList) {
+			double mCost = vehicle.calculateMaintenaceCost(distance);
+			if (mCost < minMCost) {
+				minMCost = mCost;
+				minMCostVehicles.clear();
+				minMCostVehicles.add(vehicle);
+			} else if (mCost == minMCost) {
+				minMCostVehicles.add(vehicle);
 			}
+		}
+		// randomly return one of the vehicles from the list, if multiple vehicles have the same lowest maintenance cost
+		Random randindex = new Random();
+		return minMCostVehicles.get(randindex.nextInt(minMCostVehicles.size()));
 	}
+	
 	public ArrayList<Vehicle> getVehicleWithHighestFuelEfficiency(double distance, double fuelPrice)
 	{
 		if (vehicleList.isEmpty())
